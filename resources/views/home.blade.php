@@ -51,19 +51,20 @@
         <!-- Articles Section -->
         <div class="container">
             <div class="row">
-                <!-- Article 1 - Machine Learning -->
+                @foreach($subjects as $subject)
+                <!-- Article: {{ $subject->name }} -->
                 <div class="col-12">
                     <div class="article-card">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=500" alt="Machine Learning" class="article-image" style="height: 100%;">
+                                <img src="{{ $subject->image_url }}" alt="{{ $subject->name }}" class="article-image" style="height: 100%;">
                             </div>
                             <div class="col-md-8">
                                 <div class="article-content">
-                                    <h2 class="article-title">Machine Learning</h2>
-                                    <p class="article-meta">18 May 2024 | by: Ida</p>
+                                    <h2 class="article-title">{{ $subject->name }}</h2>
+                                    <p class="article-meta">{{ $subject->created_at->format('d M Y') }} | by: {{ $subject->user->name }}</p>
                                     <p class="article-description">
-                                        Di tengah pesatnya perkembangan teknologi kecerdasan buatan atau artificial intelligence (AI)...
+                                        {{ $subject->description }}
                                     </p>
                                     <a href="#" class="read-more-btn">read more...</a>
                                 </div>
@@ -71,27 +72,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Article 2 - Human and Computer Interaction -->
-                <div class="col-12">
-                    <div class="article-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="Human Computer Interaction" class="article-image" style="height: 100%;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="article-content">
-                                    <h2 class="article-title">Human and Computer Interaction</h2>
-                                    <p class="article-meta">18 May 2024 | by: Sabrina</p>
-                                    <p class="article-description">
-                                        Human-Computer Interaction atau HCI adalah studi tentang bagaimana manusia berinteraksi dengan...
-                                    </p>
-                                    <a href="#" class="read-more-btn">read more...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </main>

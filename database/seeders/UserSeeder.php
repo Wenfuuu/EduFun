@@ -19,30 +19,35 @@ class UserSeeder extends Seeder
             'name' => 'Ida',
             'email' => 'ida@edufun.com',
             'password' => Hash::make('password'),
+            'image_url' => 'https://ui-avatars.com/api/?name=Ida&size=200&background=random',
         ]);
 
         User::create([
             'name' => 'Sabrina',
             'email' => 'sabrina@edufun.com',
             'password' => Hash::make('password'),
+            'image_url' => 'https://ui-avatars.com/api/?name=Sabrina&size=200&background=random',
         ]);
 
         User::create([
             'name' => 'John Doe',
             'email' => 'john@edufun.com',
             'password' => Hash::make('password'),
+            'image_url' => 'https://ui-avatars.com/api/?name=John+Doe&size=200&background=random',
         ]);
 
         User::create([
             'name' => 'Jane Smith',
             'email' => 'jane@edufun.com',
             'password' => Hash::make('password'),
+            'image_url' => 'https://ui-avatars.com/api/?name=Jane+Smith&size=200&background=random',
         ]);
 
         User::create([
             'name' => 'Michael Johnson',
             'email' => 'michael@edufun.com',
             'password' => Hash::make('password'),
+            'image_url' => 'https://ui-avatars.com/api/?name=Michael+Johnson&size=200&background=random',
         ]);
 
         // Create additional random users with Faker
