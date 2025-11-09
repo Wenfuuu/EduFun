@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,8 @@ class HomeController extends Controller
             ->take(2)
             ->get();
 
-        return view('home', compact('subjects'));
+        $categories = Category::all();
+
+        return view('home', compact('subjects', 'categories'));
     }
 }
