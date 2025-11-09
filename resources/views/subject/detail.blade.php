@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - EduFun</title>
+    <title>{{ $subject->name }} - EduFun</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/subject.css') }}" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -24,15 +24,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Category
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                            @foreach($categories as $category)
-                                <li><a class="dropdown-item" href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                            @foreach($categories as $cat)
+                                <li><a class="dropdown-item" href="/category/{{ $cat->id }}">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -51,35 +51,22 @@
     </nav>
 
     <main>
-        <!-- Hero Image -->
-        <div class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200');">
+        <!-- Subject Header -->
+        <div class="container subject-header">
+            <h2 class="category-badge">{{ $subject->category->name }}</h2>
         </div>
 
-        <!-- Articles Section -->
+        <!-- Subject Banner Image -->
         <div class="container">
-            <div class="row">
-                @foreach($subjects as $subject)
-                <!-- Article: {{ $subject->name }} -->
-                <div class="col-12">
-                    <div class="article-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ $subject->image_url }}" alt="{{ $subject->name }}" class="article-image" style="height: 100%;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="article-content">
-                                    <h2 class="article-title">{{ $subject->name }}</h2>
-                                    <p class="article-meta">{{ $subject->created_at->format('d M Y') }} | by: {{ $subject->user->name }}</p>
-                                    <p class="article-description">
-                                        {{ Str::limit($subject->description, 200, '...') }}
-                                    </p>
-                                    <a href="/subject/{{ $subject->id }}" class="read-more-btn">read more...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+            <img src="{{ $subject->image_url }}" alt="{{ $subject->name }}" class="subject-banner">
+            
+            <!-- Subject Meta -->
+            <p class="subject-meta">{{ $subject->created_at->format('d M Y') }} | by: {{ $subject->user->name }}</p>
+            
+            <!-- Subject Content -->
+            <div class="subject-content">
+                <h3>{{ $subject->name }}</h3>
+                <p>{{ $subject->description }}</p>
             </div>
         </div>
     </main>

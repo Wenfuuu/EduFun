@@ -72,9 +72,9 @@
                                     <h2 class="article-title">{{ $subject->name }}</h2>
                                     <p class="article-meta">{{ $subject->created_at->format('d M Y') }} | by: {{ $subject->user->name }}</p>
                                     <p class="article-description">
-                                        {{ $subject->description }}
+                                        {{ Str::limit($subject->description, 200, '...') }}
                                     </p>
-                                    <a href="#" class="read-more-btn">read more...</a>
+                                    <a href="/subject/{{ $subject->id }}" class="read-more-btn">read more...</a>
                                 </div>
                             </div>
                         </div>
