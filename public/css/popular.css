@@ -28,48 +28,17 @@ body {
     color: #0d6efd !important;
 }
 
-/* Writer Profile Section */
-.writer-profile-section {
-    background-color: white;
-    padding: 40px 0;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.writer-profile {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.profile-info {
-    flex: 1;
-}
-
-.writer-name {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.writer-specialty {
-    font-size: 1.1rem;
-    color: #666;
-    margin: 0;
-}
-
-/* Articles Section */
-.articles-section {
+/* Popular Section */
+.popular-section {
     padding: 60px 0;
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 200px);
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: #333;
 }
 
 .article-card {
@@ -122,6 +91,43 @@ body {
     color: white;
 }
 
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover:not(.disabled):not(.active) {
+    background-color: #f0f0f0;
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.page-link.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.page-link.disabled {
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
 /* Footer */
 footer {
     background-color: #1a1d3d;
@@ -137,9 +143,9 @@ main {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .writer-profile {
-        flex-direction: column;
-        text-align: center;
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
     }
 
     .article-image {
@@ -148,5 +154,14 @@ main {
 
     .article-content {
         padding: 20px;
+    }
+
+    .custom-pagination {
+        flex-wrap: wrap;
+    }
+
+    .pagination-box {
+        padding: 8px 20px;
+        font-size: 0.9rem;
     }
 }

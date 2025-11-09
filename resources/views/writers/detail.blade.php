@@ -87,7 +87,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <p>&copy; EduFun 2025 | Web Programming | Bertrand Geraldo Tjahyadi | 2702229932</p>
         </div>

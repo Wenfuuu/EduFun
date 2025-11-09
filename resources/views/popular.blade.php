@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - EduFun</title>
+    <title>Popular - EduFun</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/popular.css') }}" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -40,29 +40,60 @@
                         <a class="nav-link" href="/writers">Writers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/about">About Us</a>
+                        <a class="nav-link" href="/about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/popular">Popular</a>
+                        <a class="nav-link active" href="/popular">Popular</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- About Section -->
-    <section class="about-section">
+    <!-- Popular Section -->
+    <section class="popular-section">
         <div class="container">
-            <h1 class="about-title">About EduFun</h1>
+            <h1 class="page-title">Popular</h1>
 
-            <div class="about-content">
-                <p class="about-text">
-                    EduFun adalah perusahaan pendidikan berbasis teknologi asal Indonesia. EduFun menyediakan layanan akses pendidikan dalam format tulisan berbahasa Indonesia yang disajikan secara online melalui website.
-                </p>
+            @foreach($subjects as $subject)
+                <div class="article-card mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ $subject->image_url }}" class="article-image" alt="{{ $subject->name }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="article-content">
+                                <h2 class="article-title">{{ $subject->name }}</h2>
+                                <p class="article-meta">{{ $subject->created_at->format('d M Y') }} | by: {{ $subject->user->name }}</p>
+                                <p class="article-description">{{ Str::limit($subject->description, 200, '...') }}</p>
+                                <a href="/subject/{{ $subject->id }}" class="btn btn-read-more">read more...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
-                <p class="about-text">
-                    Hingga Juni 2025, EduFun memiliki lebih dari 10 ribu pengguna. EduFun hadir sebagai bentuk revolusi dari pendidikan di Indonesia dengan mengedepankan cara berpikir kritis, logis, rasional, dan sumber pengetahuan sains yang terintegrasi terhadap semua mahasiswa IT di Indonesia. EduFun bercita-cita mencetak generasi Indonesia yang memahami ilmu pengetahuan dan cinta belajar.
-                </p>
+            <!-- Custom Pagination Links -->
+            <div class="custom-pagination">
+                @if ($subjects->onFirstPage())
+                    <span class="page-link disabled">« Previous</span>
+                @else
+                    <a href="{{ $subjects->previousPageUrl() }}" class="page-link">« Previous</a>
+                @endif
+
+                @for ($i = 1; $i <= $subjects->lastPage(); $i++)
+                    @if ($i == $subjects->currentPage())
+                        <span class="page-link active">{{ $i }}</span>
+                    @else
+                        <a href="{{ $subjects->url($i) }}" class="page-link">{{ $i }}</a>
+                    @endif
+                @endfor
+
+                @if ($subjects->hasMorePages())
+                    <a href="{{ $subjects->nextPageUrl() }}" class="page-link">Next »</a>
+                @else
+                    <span class="page-link disabled">Next »</span>
+                @endif
             </div>
         </div>
     </section>
